@@ -1,13 +1,7 @@
-import { Code, compile, Multiply, visualize } from 'sonolus.js'
+import { bool, DebugLog, Greater, If, visualize } from 'sonolus.js'
 
-console.log(Multiply(Math.PI, 5, 5))
+console.log(visualize(If(5, DebugLog(true), DebugLog(false))))
 
-const environment = { nodes: [] }
-compile(Multiply(Math.PI, 5, 5), environment)
-console.log(environment.nodes)
+console.log(visualize(If(Greater(5, 0), DebugLog(true), DebugLog(false))))
 
-function calculateCircleArea(radius: Code<number>) {
-    return Multiply(Math.PI, radius, radius)
-}
-
-console.log(visualize(calculateCircleArea(5)))
+console.log(visualize(If(bool(5), DebugLog(true), DebugLog(false))))
