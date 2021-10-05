@@ -1,7 +1,7 @@
-import { bool, DebugLog, Greater, If, visualize } from 'sonolus.js'
+import { GreaterOr, Subtract, Time, visualize } from 'sonolus.js'
 
-console.log(visualize(If(5, DebugLog(true), DebugLog(false))))
+console.log(visualize(Subtract(5, 2)))
 
-console.log(visualize(If(Greater(5, 0), DebugLog(true), DebugLog(false))))
+console.log(visualize(GreaterOr(Time, 5)))
 
-console.log(visualize(If(bool(5), DebugLog(true), DebugLog(false))))
+console.log(visualize([Subtract(5, 2), GreaterOr(Time, 5)]))
