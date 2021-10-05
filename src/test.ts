@@ -1,58 +1,130 @@
+import { EngineConfigurationUI } from 'sonolus-core'
 import {
-    Add,
-    createEntityData,
-    EntityInfo,
+    build,
+    defineArchetypes,
+    defineBuckets,
+    defineOptions,
+    defineScripts,
     HorizontalAlign,
-    LevelData,
-    Pointer,
     ScreenAspectRatio,
+    serve,
     Subtract,
-    Time,
     UIMenu,
-    visualize,
 } from 'sonolus.js'
 
-console.log(visualize(LevelData))
+const options = defineOptions({})
 
-const time = LevelData.to<number>(0)
-
-console.log(visualize(Add(time, 1)))
-
-const screenAspectRatio = LevelData.to<number>(2)
-
-console.log(visualize(screenAspectRatio))
-
-console.log(visualize(Add(Time, 1)))
-
-console.log(
-    visualize(
-        UIMenu.set(
-            Subtract(0.05, ScreenAspectRatio),
-            0.95,
-            0,
-            1,
-            0.15,
-            0.15,
-            0,
-            1,
-            HorizontalAlign.Center,
-            true
-        )
-    )
-)
-
-console.log(visualize([EntityInfo.state, EntityInfo.of(5).state]))
-
-class EntityDataPointer extends Pointer {
-    public get time() {
-        return this.to<number>(0)
-    }
-
-    public get isSilent() {
-        return this.to<boolean>(1)
-    }
+const ui: EngineConfigurationUI = {
+    primaryMetric: 'arcade',
+    secondaryMetric: 'life',
+    menuVisibility: {
+        alpha: 1,
+        scale: 1,
+    },
+    judgmentVisibility: {
+        alpha: 1,
+        scale: 1,
+    },
+    comboVisibility: {
+        alpha: 1,
+        scale: 1,
+    },
+    primaryMetricVisibility: {
+        alpha: 1,
+        scale: 1,
+    },
+    secondaryMetricVisibility: {
+        alpha: 1,
+        scale: 1,
+    },
+    judgmentAnimation: {
+        scale: {
+            from: 1,
+            to: 1,
+            duration: 0,
+            ease: 'Linear',
+        },
+        alpha: {
+            from: 1,
+            to: 1,
+            duration: 0,
+            ease: 'Linear',
+        },
+    },
+    comboAnimation: {
+        scale: {
+            from: 1,
+            to: 1,
+            duration: 0,
+            ease: 'Linear',
+        },
+        alpha: {
+            from: 1,
+            to: 1,
+            duration: 0,
+            ease: 'Linear',
+        },
+    },
+    judgmentErrorStyle: 'none',
+    judgmentErrorPlacement: 'both',
+    judgmentErrorMin: 0,
 }
 
-const EntityData = createEntityData(EntityDataPointer)
+const engineConfiguration = {
+    options,
+    ui,
+}
 
-console.log(visualize([EntityData.isSilent, EntityData.of(5).isSilent]))
+const buckets = defineBuckets({})
+
+const scripts = defineScripts({
+    initialization: () => ({
+        preprocess: {
+            code: UIMenu.set(
+                Subtract(0.05, ScreenAspectRatio),
+                0.95,
+                0,
+                1,
+                0.15,
+                0.15,
+                0,
+                1,
+                HorizontalAlign.Center,
+                true
+            ),
+        },
+    }),
+})
+
+const archetypes = defineArchetypes({
+    initialization: {
+        script: scripts.initializationIndex,
+    },
+})
+
+const engineData = {
+    buckets,
+    archetypes,
+    scripts,
+}
+
+const levelData = {
+    entities: [
+        {
+            archetype: archetypes.initializationIndex,
+        },
+    ],
+}
+
+const buildOutput = build({
+    engine: {
+        configuration: engineConfiguration,
+        data: engineData,
+    },
+
+    level: {
+        data: levelData,
+    },
+})
+
+serve(buildOutput)
