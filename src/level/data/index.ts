@@ -6,5 +6,8 @@ export const levelData: LevelData = {
         {
             archetype: archetypes.initializationIndex,
         },
+        {
+            archetype: archetypes.stageIndex,
+        },
     ],
 }
