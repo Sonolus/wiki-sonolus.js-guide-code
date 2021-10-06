@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "serve": "ts-node-dev --respawn --transpile-only ./src/serve"
+    "lint": "tsc -p . --noEmit && eslint --ext .ts src/",
+    "serve": "ts-node-dev --respawn --transpile-only ./src/serve",
+    "build": "ts-node ./src/build"
   },
   "devDependencies": {
     "@types/node": "^16.11.49",
