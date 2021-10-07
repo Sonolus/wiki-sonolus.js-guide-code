@@ -3,10 +3,12 @@ import {
     Add,
     And,
     createEntityData,
+    Divide,
     Draw,
     EntityMemory,
     Greater,
     GreaterOr,
+    If,
     InputAccuracy,
     InputBucket,
     InputBucketValue,
@@ -18,6 +20,7 @@ import {
     Or,
     Play,
     Pointer,
+    Random,
     Remap,
     Script,
     Subtract,
@@ -25,6 +28,7 @@ import {
     TouchST,
     TouchStarted,
 } from 'sonolus.js'
+import { options } from '../../configuration/options'
 import { buckets } from '../buckets'
 import { isTouchOccupied } from './level-memory'
 
@@ -46,7 +50,11 @@ export function note(): Script {
     const inputState = EntityMemory.to<boolean>(33)
 
     const preprocess = [
-        spawnTime.set(Subtract(EntityData.time, 1)),
+        EntityData.time.set(Divide(EntityData.time, options.speed)),
+
+        spawnTime.set(
+            Subtract(EntityData.time, If(options.random, Random(0.5, 1.5), 1))
+        ),
         z.set(Subtract(1000, EntityData.time)),
         minInputTime.set(Add(EntityData.time, -0.2, InputOffset)),
         maxInputTime.set(Add(EntityData.time, 0.2, InputOffset)),
