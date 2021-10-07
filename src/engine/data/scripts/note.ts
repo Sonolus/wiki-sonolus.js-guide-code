@@ -1,4 +1,4 @@
-import { EffectClip, SkinSprite } from 'sonolus-core'
+import { EffectClip, ParticleEffect, SkinSprite } from 'sonolus-core'
 import {
     Add,
     And,
@@ -23,6 +23,7 @@ import {
     Random,
     Remap,
     Script,
+    SpawnParticleEffect,
     Subtract,
     Time,
     TouchST,
@@ -87,6 +88,19 @@ export function note(): Script {
             InputBucketValue.set(Multiply(1000, InputAccuracy)),
 
             Play(Add(EffectClip.Miss, InputJudgment), 0.02),
+            SpawnParticleEffect(
+                ParticleEffect.NoteCircularTapCyan,
+                -0.4,
+                -1,
+                -0.4,
+                -0.2,
+                0.4,
+                -0.2,
+                0.4,
+                -1,
+                0.3,
+                false
+            ),
         ]
     )
 
