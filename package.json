@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "serve": "nodemon ./src/serve.mjs"
+  },
   "devDependencies": {
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
