@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "serve": "nodemon ./src/serve.mjs"
+    "lint": "eslint --ext .mjs src/",
+    "serve": "nodemon ./src/serve.mjs",
+    "build": "node ./src/build.mjs"
   },
   "devDependencies": {
     "eslint": "^8.22.0",
