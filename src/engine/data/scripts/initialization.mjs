@@ -1,5 +1,6 @@
 import {
     HorizontalAlign,
+    LevelBucket,
     Multiply,
     ScreenAspectRatio,
     Subtract,
@@ -8,6 +9,7 @@ import {
     UIJudgment,
     UIMenu,
 } from 'sonolus.js'
+import { buckets } from '../buckets.mjs'
 
 export function initialization() {
     const preprocess = [
@@ -59,6 +61,8 @@ export function initialization() {
             HorizontalAlign.Center,
             false
         ),
+
+        LevelBucket.of(buckets.noteIndex).setBucket(50, 100, 200),
     ]
     const spawnOrder = 0
 
