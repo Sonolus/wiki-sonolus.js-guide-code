@@ -8,5 +8,12 @@ export const levelData = {
         {
             archetype: archetypes.stageIndex,
         },
+        {
+            archetype: archetypes.noteIndex,
+            data: {
+                index: 0,
+                values: [2],
+            },
+        },
     ],
 }
