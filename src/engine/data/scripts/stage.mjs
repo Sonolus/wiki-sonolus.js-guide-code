@@ -1,15 +1,19 @@
-import { SkinSprite } from 'sonolus-core'
+import { EffectClip, SkinSprite } from 'sonolus-core'
 import {
+    And,
     Draw,
     EntityInfo,
     EntityMemory,
     Equal,
     If,
     Multiply,
+    Not,
     Or,
+    Play,
     ScreenAspectRatio,
     State,
     TouchEnded,
+    TouchStarted,
 } from 'sonolus.js'
 import { isTouchOccupied } from './level-memory.mjs'
 
@@ -21,6 +25,7 @@ export function stage() {
     const shouldSpawn = Equal(EntityInfo.of(0).state, State.Despawned)
 
     const touch = [
+        And(TouchStarted, Not(isTouchOccupied), Play(EffectClip.Stage, 0.02)),
         isTouchOccupied.set(false),
         Or(TouchEnded, anyTouch.set(true)),
     ]
@@ -54,7 +59,10 @@ export function stage() {
     return {
         spawnOrder,
         shouldSpawn,
-        touch,
+        touch: {
+            code: touch,
+            order: 1,
+        },
         updateParallel,
     }
 }
