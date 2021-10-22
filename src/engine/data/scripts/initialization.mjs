@@ -1,13 +1,19 @@
 import {
+    ConsecutiveGreatScore,
+    GoodMultiplier,
+    GreatMultiplier,
     HorizontalAlign,
     LevelBucket,
     Multiply,
+    PerfectMultiplier,
     ScreenAspectRatio,
     Subtract,
     UIComboText,
     UIComboValue,
     UIJudgment,
     UIMenu,
+    UIPrimaryMetricBar,
+    UIPrimaryMetricValue,
 } from 'sonolus.js'
 import { buckets } from '../buckets.mjs'
 
@@ -61,8 +67,38 @@ export function initialization() {
             HorizontalAlign.Center,
             false
         ),
+        UIPrimaryMetricBar.set(
+            Subtract(ScreenAspectRatio, 0.05),
+            0.95,
+            1,
+            1,
+            0.75,
+            0.15,
+            0,
+            1,
+            HorizontalAlign.Left,
+            true
+        ),
+        UIPrimaryMetricValue.set(
+            Subtract(ScreenAspectRatio, 0.085),
+            0.915,
+            1,
+            1,
+            0,
+            0.08,
+            0,
+            1,
+            HorizontalAlign.Right,
+            false
+        ),
 
         LevelBucket.of(buckets.noteIndex).setBucket(50, 100, 200),
+
+        PerfectMultiplier.set(1),
+        GreatMultiplier.set(0.75),
+        GoodMultiplier.set(0.5),
+
+        ConsecutiveGreatScore.set(0.01, 10, 50),
     ]
     const spawnOrder = 0
 
