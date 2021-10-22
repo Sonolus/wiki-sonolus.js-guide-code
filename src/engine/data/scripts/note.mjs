@@ -7,7 +7,10 @@ import {
     EntityMemory,
     Greater,
     GreaterOr,
+    InputAccuracy,
+    InputJudgment,
     InputOffset,
+    Judge,
     Not,
     Or,
     Pointer,
@@ -51,7 +54,21 @@ export function note() {
         TouchStarted,
         GreaterOr(TouchST, minInputTime),
         Not(isTouchOccupied),
-        [inputState.set(true), isTouchOccupied.set(true)]
+        [
+            inputState.set(true),
+            isTouchOccupied.set(true),
+
+            InputJudgment.set(
+                Judge(
+                    Subtract(TouchST, InputOffset),
+                    EntityData.time,
+                    0.05,
+                    0.1,
+                    0.2
+                )
+            ),
+            InputAccuracy.set(Subtract(TouchST, InputOffset, EntityData.time)),
+        ]
     )
 
     const radius = 0.2
