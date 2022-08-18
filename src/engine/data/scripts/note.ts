@@ -14,11 +14,11 @@ import {
     Remap,
     Script,
     Subtract,
-    TemporaryMemory,
     Time,
     TouchST,
     TouchStarted,
 } from 'sonolus.js'
+import { isTouchOccupied } from './level-memory'
 
 class EntityDataPointer extends Pointer {
     public get time() {
@@ -47,8 +47,6 @@ export function note(): Script {
     const spawnOrder = Add(spawnTime, 1000)
 
     const shouldSpawn = GreaterOr(Time, spawnTime)
-
-    const isTouchOccupied = TemporaryMemory.to<boolean>(0)
 
     const touch = And(
         TouchStarted,
