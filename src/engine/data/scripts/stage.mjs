@@ -11,6 +11,7 @@ import {
     State,
     TouchEnded,
 } from 'sonolus.js'
+import { isTouchOccupied } from './level-memory.mjs'
 
 export function stage() {
     const anyTouch = EntityMemory.to(0)
@@ -19,7 +20,10 @@ export function stage() {
 
     const shouldSpawn = Equal(EntityInfo.of(0).state, State.Despawned)
 
-    const touch = Or(TouchEnded, anyTouch.set(true))
+    const touch = [
+        isTouchOccupied.set(false),
+        Or(TouchEnded, anyTouch.set(true)),
+    ]
 
     const yCenter = -0.6
     const thickness = 0.1
