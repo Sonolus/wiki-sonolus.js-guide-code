@@ -78,27 +78,23 @@ const buckets = defineBuckets({})
 
 const scripts = defineScripts({
     initialization: () => ({
-        preprocess: {
-            code: UIMenu.set(
-                Subtract(0.05, ScreenAspectRatio),
-                0.95,
-                0,
-                1,
-                0.15,
-                0.15,
-                0,
-                1,
-                HorizontalAlign.Center,
-                true
-            ),
-        },
+        preprocess: UIMenu.set(
+            Subtract(0.05, ScreenAspectRatio),
+            0.95,
+            0,
+            1,
+            0.15,
+            0.15,
+            0,
+            1,
+            HorizontalAlign.Center,
+            true
+        ),
     }),
 })
 
 const archetypes = defineArchetypes({
-    initialization: {
-        script: scripts.initializationIndex,
-    },
+    initialization: scripts.initializationIndex,
 })
 
 const engineData = {
