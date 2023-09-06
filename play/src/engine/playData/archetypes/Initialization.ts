@@ -2,6 +2,7 @@ import { judgeLine } from '../judgeLine.js'
 import { note } from '../note.js'
 import { particle } from '../particle.js'
 import { skin } from '../skin.js'
+import { archetypes } from './index.js'
 
 export class Initialization extends Archetype {
     preprocess() {
@@ -60,6 +61,12 @@ export class Initialization extends Archetype {
             horizontalAlign: HorizontalAlign.Center,
             background: false,
         })
+
+        for (const archetype of Object.values(archetypes)) {
+            if (!('globalPreprocess' in archetype)) continue
+
+            archetype.globalPreprocess()
+        }
     }
 
     spawnOrder() {
