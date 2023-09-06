@@ -1,5 +1,6 @@
 import { EngineArchetypeDataName } from 'sonolus-core'
 import { buckets } from '../buckets.js'
+import { effect } from '../effect.js'
 import { note } from '../note.js'
 import { skin } from '../skin.js'
 import { windows } from '../windows.js'
@@ -87,6 +88,18 @@ export class Note extends Archetype {
 
             this.result.bucket.index = buckets.note.index
             this.result.bucket.value = this.result.accuracy * 1000
+
+            switch (this.result.judgment) {
+                case Judgment.Perfect:
+                    effect.clips.perfect.play(0.02)
+                    break
+                case Judgment.Great:
+                    effect.clips.great.play(0.02)
+                    break
+                case Judgment.Good:
+                    effect.clips.good.play(0.02)
+                    break
+            }
 
             this.despawn = true
             return
