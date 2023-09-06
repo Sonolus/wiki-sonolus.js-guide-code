@@ -1,4 +1,5 @@
 import { EngineArchetypeDataName, EngineArchetypeName, LevelData } from 'sonolus-core'
+import { chart } from './chart.js'
 
 export const data: LevelData = {
     bgmOffset: 0,
@@ -15,27 +16,29 @@ export const data: LevelData = {
             archetype: 'Stage',
             data: [],
         },
-        {
+
+        ...chart.bpms.map(({ beat, bpm }) => ({
             archetype: EngineArchetypeName.BpmChange,
             data: [
                 {
                     name: EngineArchetypeDataName.Beat,
-                    value: 0,
+                    value: beat,
                 },
                 {
                     name: EngineArchetypeDataName.Bpm,
-                    value: 120,
+                    value: bpm,
                 },
             ],
-        },
-        {
+        })),
+
+        ...chart.notes.map((beat) => ({
             archetype: 'Note',
             data: [
                 {
                     name: EngineArchetypeDataName.Beat,
-                    value: 4,
+                    value: beat,
                 },
             ],
-        },
+        })),
     ],
 }
