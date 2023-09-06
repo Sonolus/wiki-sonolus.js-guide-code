@@ -8,6 +8,10 @@ export const data: LevelData = {
             data: [],
         },
         {
+            archetype: 'InputManager',
+            data: [],
+        },
+        {
             archetype: 'Stage',
             data: [],
         },
