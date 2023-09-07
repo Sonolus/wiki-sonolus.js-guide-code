@@ -4,11 +4,7 @@ import { skin } from '../skin.js'
 
 export class Stage extends Archetype {
     spawnOrder() {
-        return 1
-    }
-
-    shouldSpawn() {
-        return entityInfos.get(0).state === EntityState.Despawned
+        return 2
     }
 
     updateParallel() {

@@ -2,6 +2,7 @@ import { EngineArchetypeDataName } from 'sonolus-core'
 import { note } from '../note.js'
 import { skin } from '../skin.js'
 import { windows } from '../windows.js'
+import { isUsed, markAsUsed } from './InputManager.js'
 
 export class Note extends Archetype {
     data = this.defineData({
@@ -48,11 +49,15 @@ export class Note extends Archetype {
         this.z = 1000 - this.targetTime
     }
 
+    touchOrder = 1
     touch() {
         if (time.now < this.inputTime.min) return
 
         for (const touch of touches) {
             if (!touch.started) continue
+            if (isUsed(touch)) continue
+
+            markAsUsed(touch)
 
             this.despawn = true
             return

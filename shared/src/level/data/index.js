@@ -9,6 +9,10 @@ export const data = {
             data: [],
         },
         {
+            archetype: 'InputManager',
+            data: [],
+        },
+        {
             archetype: 'Stage',
             data: [],
         },
