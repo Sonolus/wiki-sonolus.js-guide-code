@@ -1,6 +1,7 @@
 import { EngineArchetypeDataName } from 'sonolus-core'
 import { note } from '../note.js'
 import { skin } from '../skin.js'
+import { windows } from '../windows.js'
 
 export class Note extends Archetype {
     data = this.defineData({
@@ -15,6 +16,11 @@ export class Note extends Archetype {
     })
 
     spawnTime = this.entityMemory(Number)
+
+    inputTime = this.entityMemory({
+        min: Number,
+        max: Number,
+    })
 
     z = this.entityMemory(Number)
 
@@ -36,10 +42,27 @@ export class Note extends Archetype {
     }
 
     initialize() {
+        this.inputTime.min = this.targetTime + windows.good.min + input.offset
+        this.inputTime.max = this.targetTime + windows.good.max + input.offset
+
         this.z = 1000 - this.targetTime
     }
 
+    touch() {
+        if (time.now < this.inputTime.min) return
+
+        for (const touch of touches) {
+            if (!touch.started) continue
+
+            this.despawn = true
+            return
+        }
+    }
+
     updateParallel() {
+        if (time.now > this.inputTime.max) this.despawn = true
+        if (this.despawn) return
+
         const y = Math.unlerp(this.visualTime.min, this.visualTime.max, time.now)
 
         const layout = Rect.one.mul(note.radius).scale(1, -1).translate(0, y)
