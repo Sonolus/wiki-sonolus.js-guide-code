@@ -32,6 +32,20 @@ export const data = {
             ],
         })),
 
+        ...chart.timeScales.map(({ beat, timeScale }) => ({
+            archetype: EngineArchetypeName.TimeScaleChange,
+            data: [
+                {
+                    name: EngineArchetypeDataName.Beat,
+                    value: beat,
+                },
+                {
+                    name: EngineArchetypeDataName.TimeScale,
+                    value: timeScale,
+                },
+            ],
+        })),
+
         ...chart.notes.map((beat) => ({
             archetype: 'Note',
             data: [
