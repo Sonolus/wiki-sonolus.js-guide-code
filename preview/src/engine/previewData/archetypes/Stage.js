@@ -1,4 +1,6 @@
+import { chart } from '../chart.js'
 import { panel } from '../panel.js'
+import { print } from '../print.js'
 import { skin } from '../skin.js'
 
 export class Stage extends Archetype {
@@ -12,6 +14,8 @@ export class Stage extends Archetype {
 
     render() {
         this.renderPanels()
+
+        this.printTimes()
     }
 
     renderPanels() {
@@ -52,6 +56,12 @@ export class Stage extends Archetype {
                 0,
                 1,
             )
+        }
+    }
+
+    printTimes() {
+        for (let i = 1; i <= Math.floor(chart.duration); i++) {
+            print(i, i, PrintFormat.Time, 0, PrintColor.Neutral, 'left')
         }
     }
 }
