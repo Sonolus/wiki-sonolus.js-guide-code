@@ -9,6 +9,7 @@ export const skin = defineSkin({
         note: SkinSpriteName.NoteHeadCyan,
 
         beatLine: SkinSpriteName.GridNeutral,
+        bpmChangeLine: SkinSpriteName.GridPurple,
     },
 })
 
