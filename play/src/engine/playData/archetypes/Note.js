@@ -39,6 +39,13 @@ export class Note extends Archetype {
             great: toMs(windows.great),
             good: toMs(windows.good),
         })
+
+        this.life.set({
+            perfect: 10,
+            great: 0,
+            good: 0,
+            miss: -100,
+        })
     }
 
     preprocess() {

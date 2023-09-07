@@ -34,6 +34,11 @@ export class Initialization extends Archetype {
             cap: 50,
         })
 
+        life.consecutive.perfect.set({
+            increment: 50,
+            step: 10,
+        })
+
         ui.menu.set({
             anchor: screen.rect.lt.add(new Vec(0.05, -0.05)),
             pivot: { x: 0, y: 1 },
@@ -90,6 +95,32 @@ export class Initialization extends Archetype {
             size: new Vec(0, 0.08).mul(ui.configuration.metric.primary.scale),
             rotation: 0,
             alpha: ui.configuration.metric.primary.alpha,
+            horizontalAlign: HorizontalAlign.Right,
+            background: false,
+        })
+
+        ui.metric.secondary.bar.set({
+            anchor: screen.rect.rt
+                .sub(new Vec(0.05, 0.05))
+                .sub(new Vec(0, 0.15).mul(ui.configuration.metric.primary.scale))
+                .sub(new Vec(0, 0.05)),
+            pivot: { x: 1, y: 1 },
+            size: new Vec(0.75, 0.15).mul(ui.configuration.metric.secondary.scale),
+            rotation: 0,
+            alpha: ui.configuration.metric.secondary.alpha,
+            horizontalAlign: HorizontalAlign.Left,
+            background: true,
+        })
+        ui.metric.secondary.value.set({
+            anchor: screen.rect.rt
+                .sub(new Vec(0.05, 0.05))
+                .sub(new Vec(0, 0.15).mul(ui.configuration.metric.primary.scale))
+                .sub(new Vec(0, 0.05))
+                .sub(new Vec(0.035, 0.035).mul(ui.configuration.metric.secondary.scale)),
+            pivot: { x: 1, y: 1 },
+            size: new Vec(0, 0.08).mul(ui.configuration.metric.secondary.scale),
+            rotation: 0,
+            alpha: ui.configuration.metric.secondary.alpha,
             horizontalAlign: HorizontalAlign.Right,
             background: false,
         })
