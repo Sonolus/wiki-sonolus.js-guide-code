@@ -1,3 +1,4 @@
+import { options } from '../../configuration/options.js'
 import { judgeLine } from '../judgeLine.js'
 import { note } from '../note.js'
 import { particle } from '../particle.js'
@@ -21,7 +22,7 @@ export class Initialization extends Archetype {
         judgeLine.l = screen.l / h
         judgeLine.r = screen.r / h
 
-        note.radius = noteRadius / h
+        note.radius = (noteRadius / h) * options.noteSize
 
         score.base.set({
             perfect: 1,
