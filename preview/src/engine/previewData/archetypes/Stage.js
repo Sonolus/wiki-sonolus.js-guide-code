@@ -16,6 +16,7 @@ export class Stage extends Archetype {
         this.renderPanels()
 
         this.printTimes()
+        this.printMeasures()
     }
 
     renderPanels() {
@@ -62,6 +63,19 @@ export class Stage extends Archetype {
     printTimes() {
         for (let i = 1; i <= Math.floor(chart.duration); i++) {
             print(i, i, PrintFormat.Time, 0, PrintColor.Neutral, 'left')
+        }
+    }
+
+    printMeasures() {
+        for (let i = 4; i <= Math.floor(chart.beats); i += 4) {
+            print(
+                i / 4 + 1,
+                bpmChanges.at(i).time,
+                PrintFormat.MeasureCount,
+                0,
+                PrintColor.Neutral,
+                'right',
+            )
         }
     }
 }
