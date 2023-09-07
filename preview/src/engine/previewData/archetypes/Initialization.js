@@ -9,11 +9,6 @@ export class Initialization extends Archetype {
             .translate(screen.l, screen.b)
         skin.transform.set(transform)
 
-        canvas.set({
-            scroll: Scroll.LeftToRight,
-            size: (panel.count * panel.w * screen.h) / 20,
-        })
-
         ui.menu.set({
             anchor: screen.rect.lt.add(new Vec(0.05, -0.05)),
             pivot: { x: 0, y: 1 },
