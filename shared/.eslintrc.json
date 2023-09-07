@@ -1,0 +1,21 @@
+{
+    "globals": {
+        "Collection": false,
+        "Container": false,
+        "ContainerType": false,
+        "DataType": false,
+        "Dictionary": false,
+        "Mat": false,
+        "Quad": false,
+        "Rect": false,
+        "Tuple": false,
+        "Vec": false,
+        "EffectClipId": false,
+        "ParticleEffectId": false,
+        "SkinSpriteId": false,
+        "LoopedEffectClipInstanceId": false,
+        "ParticleEffectInstanceId": false,
+        "ScheduledLoopedEffectClipInstanceId": false,
+        "native": false
+    }
+}
