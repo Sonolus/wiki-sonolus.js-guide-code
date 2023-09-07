@@ -1,7 +1,7 @@
 import { chart } from '../chart.js'
 import { panel } from '../panel.js'
 import { print } from '../print.js'
-import { skin } from '../skin.js'
+import { line, skin } from '../skin.js'
 
 export class Stage extends Archetype {
     preprocessOrder = 1
@@ -14,6 +14,8 @@ export class Stage extends Archetype {
 
     render() {
         this.renderPanels()
+
+        this.renderBeats()
 
         this.printTimes()
         this.printMeasures()
@@ -57,6 +59,12 @@ export class Stage extends Archetype {
                 0,
                 1,
             )
+        }
+    }
+
+    renderBeats() {
+        for (let i = 0; i <= Math.floor(chart.beats); i++) {
+            line(skin.sprites.beatLine, i, i % 4 === 0 ? 0.25 : 0.125)
         }
     }
 
