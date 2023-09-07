@@ -2,6 +2,14 @@ import { panel } from '../panel.js'
 import { skin } from '../skin.js'
 
 export class Stage extends Archetype {
+    preprocessOrder = 1
+    preprocess() {
+        canvas.set({
+            scroll: Scroll.LeftToRight,
+            size: (panel.count * panel.w * screen.h) / 20,
+        })
+    }
+
     render() {
         this.renderPanels()
     }
