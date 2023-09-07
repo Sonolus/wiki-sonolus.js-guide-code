@@ -5,5 +5,6 @@ export const skin = defineSkin({
         stageMiddle: SkinSpriteName.StageMiddle,
         stageLeftBorder: SkinSpriteName.StageLeftBorder,
         stageRightBorder: SkinSpriteName.StageRightBorder,
+        note: SkinSpriteName.NoteHeadCyan,
     },
 })
