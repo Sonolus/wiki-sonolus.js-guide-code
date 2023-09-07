@@ -1,9 +1,11 @@
+import { EngineArchetypeDataName } from 'sonolus-core'
+
 export class Note extends Archetype {
     data = this.defineData({
-        time: { name: 'time', type: Number },
+        beat: { name: EngineArchetypeDataName.Beat, type: Number },
     })
 
     updateParallel() {
-        debug.log(this.data.time)
+        debug.log(this.data.beat)
     }
 }
