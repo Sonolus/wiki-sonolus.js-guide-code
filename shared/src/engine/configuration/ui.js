@@ -43,17 +43,17 @@ export const ui = {
         },
         alpha: {
             from: 1,
-            to: 1,
-            duration: 0,
-            ease: 'None',
+            to: 0,
+            duration: 0.2,
+            ease: 'OutCubic',
         },
     },
     comboAnimation: {
         scale: {
-            from: 1,
+            from: 1.2,
             to: 1,
-            duration: 0,
-            ease: 'None',
+            duration: 0.2,
+            ease: 'InCubic',
         },
         alpha: {
             from: 1,
