@@ -1,4 +1,11 @@
+import { InstructionIconName, InstructionText } from 'sonolus-core'
+
 export const instruction = defineInstruction({
-    texts: {},
-    icons: {},
+    texts: {
+        tap: InstructionText.Tap,
+    },
+
+    icons: {
+        hand: InstructionIconName.Hand,
+    },
 })
