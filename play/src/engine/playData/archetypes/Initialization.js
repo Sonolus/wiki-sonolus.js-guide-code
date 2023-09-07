@@ -1,3 +1,5 @@
+import { judgeLine } from '../judgeLine.js'
+import { note } from '../note.js'
 import { particle } from '../particle.js'
 import { skin } from '../skin.js'
 
@@ -14,6 +16,11 @@ export class Initialization extends Archetype {
 
         skin.transform.set(transform)
         particle.transform.set(transform)
+
+        judgeLine.l = screen.l / h
+        judgeLine.r = screen.r / h
+
+        note.radius = noteRadius / h
 
         ui.menu.set({
             anchor: screen.rect.lt.add(new Vec(0.05, -0.05)),
