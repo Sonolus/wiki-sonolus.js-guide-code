@@ -23,6 +23,17 @@ export class Initialization extends Archetype {
 
         note.radius = noteRadius / h
 
+        score.base.set({
+            perfect: 1,
+            great: 0.75,
+            good: 0.5,
+        })
+        score.consecutive.great.set({
+            multiplier: 0.01,
+            step: 10,
+            cap: 50,
+        })
+
         ui.menu.set({
             anchor: screen.rect.lt.add(new Vec(0.05, -0.05)),
             pivot: { x: 0, y: 1 },
@@ -59,6 +70,27 @@ export class Initialization extends Archetype {
             rotation: 0,
             alpha: ui.configuration.combo.alpha,
             horizontalAlign: HorizontalAlign.Center,
+            background: false,
+        })
+
+        ui.metric.primary.bar.set({
+            anchor: screen.rect.rt.sub(new Vec(0.05, 0.05)),
+            pivot: { x: 1, y: 1 },
+            size: new Vec(0.75, 0.15).mul(ui.configuration.metric.primary.scale),
+            rotation: 0,
+            alpha: ui.configuration.metric.primary.alpha,
+            horizontalAlign: HorizontalAlign.Left,
+            background: true,
+        })
+        ui.metric.primary.value.set({
+            anchor: screen.rect.rt
+                .sub(new Vec(0.05, 0.05))
+                .sub(new Vec(0.035, 0.035).mul(ui.configuration.metric.primary.scale)),
+            pivot: { x: 1, y: 1 },
+            size: new Vec(0, 0.08).mul(ui.configuration.metric.primary.scale),
+            rotation: 0,
+            alpha: ui.configuration.metric.primary.alpha,
+            horizontalAlign: HorizontalAlign.Right,
             background: false,
         })
 
