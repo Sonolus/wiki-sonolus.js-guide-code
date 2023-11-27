@@ -1,9 +1,13 @@
 import { EngineArchetypeDataName } from 'sonolus-core'
+import { note } from '../note.js'
+import { skin } from '../skin.js'
 
 export class Note extends Archetype {
     data = this.defineData({
         beat: { name: EngineArchetypeDataName.Beat, type: Number },
     })
+
+    initialized = this.entityMemory(Boolean)
 
     targetTime = this.entityMemory(Number)
 
@@ -11,6 +15,8 @@ export class Note extends Archetype {
         min: Number,
         max: Number,
     })
+
+    z = this.entityMemory(Number)
 
     globalPreprocess() {
         this.life.set({
@@ -34,5 +40,20 @@ export class Note extends Archetype {
 
     despawnTime() {
         return this.visualTime.max
+    }
+
+    initialize() {
+        if (this.initialized) return
+        this.initialized = true
+
+        this.z = 1000 - this.targetTime
+    }
+
+    updateParallel() {
+        const y = Math.unlerp(this.visualTime.min, this.visualTime.max, time.scaled)
+
+        const layout = Rect.one.mul(note.radius).scale(1, -1).translate(0, y)
+
+        skin.sprites.note.draw(layout, this.z, 1)
     }
 }
