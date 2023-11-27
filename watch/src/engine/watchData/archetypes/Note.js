@@ -1,6 +1,7 @@
 import { EngineArchetypeDataName } from 'sonolus-core'
 import { effect } from '../effect.js'
 import { note } from '../note.js'
+import { particle } from '../particle.js'
 import { skin } from '../skin.js'
 
 export class Note extends Archetype {
@@ -62,5 +63,16 @@ export class Note extends Archetype {
         const layout = Rect.one.mul(note.radius).scale(1, -1).translate(0, y)
 
         skin.sprites.note.draw(layout, this.z, 1)
+    }
+
+    terminate() {
+        if (time.skip) return
+
+        const layout = Rect.one
+            .mul(2 * note.radius)
+            .scale(1, -1)
+            .translate(0, 1)
+
+        particle.effects.note.spawn(layout, 0.3, false)
     }
 }
