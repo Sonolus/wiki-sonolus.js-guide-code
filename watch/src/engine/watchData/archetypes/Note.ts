@@ -1,4 +1,5 @@
 import { EngineArchetypeDataName } from 'sonolus-core'
+import { effect } from '../effect.js'
 import { note } from '../note.js'
 import { skin } from '../skin.js'
 
@@ -34,6 +35,8 @@ export class Note extends Archetype {
 
         this.visualTime.max = timeScaleChanges.at(this.targetTime).scaledTime
         this.visualTime.min = this.visualTime.max - 120 / bpmChanges.at(this.data.beat).bpm
+
+        effect.clips.perfect.schedule(this.targetTime, 0.02)
 
         this.result.time = this.targetTime
     }
