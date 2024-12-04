@@ -1,0 +1,22 @@
+{
+  "name": "wiki-sonolus.js-guide-code",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev-play": "sonolus-cli --dev ./play",
+    "dev-watch": "sonolus-cli --dev ./watch",
+    "dev-preview": "sonolus-cli --dev ./preview",
+    "dev-tutorial": "sonolus-cli --dev ./tutorial",
+    "check-lint": "oxlint",
+    "check-format": "oxfmt --check",
+    "fix-lint": "oxlint --fix",
+    "fix-format": "oxfmt",
+    "build": "sonolus-cli --build ./play && sonolus-cli --build ./watch && sonolus-cli --build ./preview && sonolus-cli --build ./tutorial"
+  },
+  "devDependencies": {
+    "@sonolus/core": "~7.15.3",
+    "@sonolus/sonolus.js": "~9.7.3",
+    "oxfmt": "^0.62.0",
+    "oxlint": "^1.77.0"
+  }
+}
