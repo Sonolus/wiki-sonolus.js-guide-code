@@ -1,11 +1,12 @@
 import { initialization } from './components/initialization.js'
+import { stage } from './components/stage.js'
 import { segment } from './segment.js'
 import { exampleFall } from './segments/example/fall.js'
 import { exampleFrozen } from './segments/example/frozen.js'
 import { exampleHit } from './segments/example/hit.js'
 import { exampleIntro } from './segments/example/intro.js'
 
-const components = [initialization]
+const components = [initialization, stage]
 
 const segments = [exampleIntro, exampleFall, exampleFrozen, exampleHit]
 
