@@ -6,6 +6,8 @@ import { windows } from '../windows.js'
 import { isUsed, markAsUsed } from './InputManager.js'
 
 export class Note extends Archetype {
+    hasInput = true
+
     import = this.defineImport({
         beat: { name: EngineArchetypeDataName.Beat, type: Number },
     })
@@ -36,6 +38,8 @@ export class Note extends Archetype {
 
     initialize() {
         this.inputTime.copyFrom(windows.good.add(this.targetTime).add(input.offset))
+
+        this.result.accuracy = windows.good.max
     }
 
     touchOrder = 1
@@ -47,6 +51,9 @@ export class Note extends Archetype {
             if (isUsed(touch)) continue
 
             markAsUsed(touch)
+
+            this.result.judgment = input.judge(touch.startTime, this.targetTime, windows)
+            this.result.accuracy = touch.startTime - this.targetTime
 
             this.despawn = true
             return

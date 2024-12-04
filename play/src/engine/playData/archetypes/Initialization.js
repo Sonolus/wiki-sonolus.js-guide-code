@@ -32,6 +32,35 @@ export class Initialization extends Archetype {
             horizontalAlign: HorizontalAlign.Center,
             background: true,
         })
+
+        ui.judgment.set({
+            anchor: { x: 0, y: -0.4 },
+            pivot: { x: 0.5, y: 0 },
+            size: new Vec(0, 0.15).mul(ui.configuration.judgment.scale),
+            rotation: 0,
+            alpha: ui.configuration.judgment.alpha,
+            horizontalAlign: HorizontalAlign.Center,
+            background: false,
+        })
+
+        ui.combo.value.set({
+            anchor: { x: screen.r * 0.7, y: 0 },
+            pivot: { x: 0.5, y: 0 },
+            size: new Vec(0, 0.2).mul(ui.configuration.combo.scale),
+            rotation: 0,
+            alpha: ui.configuration.combo.alpha,
+            horizontalAlign: HorizontalAlign.Center,
+            background: false,
+        })
+        ui.combo.text.set({
+            anchor: { x: screen.r * 0.7, y: 0 },
+            pivot: { x: 0.5, y: 1 },
+            size: new Vec(0, 0.12).mul(ui.configuration.combo.scale),
+            rotation: 0,
+            alpha: ui.configuration.combo.alpha,
+            horizontalAlign: HorizontalAlign.Center,
+            background: false,
+        })
     }
 
     spawnOrder() {
