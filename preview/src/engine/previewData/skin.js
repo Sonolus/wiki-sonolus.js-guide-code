@@ -11,6 +11,7 @@ export const skin = defineSkin({
 
         beatLine: SkinSpriteName.GridNeutral,
         bpmChangeLine: SkinSpriteName.GridPurple,
+        timeScaleChangeLine: SkinSpriteName.GridYellow,
     },
 })
 
