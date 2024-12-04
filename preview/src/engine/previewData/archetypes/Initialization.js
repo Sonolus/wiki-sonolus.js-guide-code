@@ -1,8 +1,17 @@
+import { panel } from '../panel.js'
+import { skin } from '../skin.js'
+
 export class Initialization extends Archetype {
     preprocess() {
+        const transform = Mat.identity
+            .translate(panel.w / 2, 0)
+            .scale(screen.h / 20, screen.h / panel.h)
+            .translate(screen.l, screen.b)
+        skin.transform.set(transform)
+
         canvas.set({
             scroll: Scroll.LeftToRight,
-            size: screen.w,
+            size: (panel.count * panel.w * screen.h) / 20,
         })
 
         ui.menu.set({
