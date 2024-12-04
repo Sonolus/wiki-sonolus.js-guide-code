@@ -2,6 +2,7 @@ import { judgeLine } from '../judgeLine.js'
 import { note } from '../note.js'
 import { particle } from '../particle.js'
 import { skin } from '../skin.js'
+import { archetypes } from './index.js'
 
 export class Initialization extends Archetype {
     preprocess() {
@@ -38,6 +39,8 @@ export class Initialization extends Archetype {
     }
 
     updateSequential() {
+        archetypes.InputManager.spawn({})
+
         this.despawn = true
     }
 }
