@@ -1,3 +1,7 @@
+import { SkinSpriteName } from '@sonolus/core'
+
 export const skin = defineSkin({
-    sprites: {},
+    sprites: {
+        judgeLine: SkinSpriteName.JudgmentLine,
+    },
 })
