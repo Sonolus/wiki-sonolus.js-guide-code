@@ -1,6 +1,10 @@
+import { chart } from './chart.js'
+
 export const panel = {
     w: 7,
     h: 2,
 
-    count: 10,
+    get count() {
+        return Math.ceil(chart.duration / this.h)
+    },
 }
