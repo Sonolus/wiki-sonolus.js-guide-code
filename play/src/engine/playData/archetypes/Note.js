@@ -23,6 +23,13 @@ export class Note extends Archetype {
 
     globalPreprocess() {
         buckets.note.set(bucketWindows)
+
+        this.archetypeLife.set({
+            perfect: 10,
+            great: 0,
+            good: 0,
+            miss: -100,
+        })
     }
 
     preprocess() {
