@@ -1,3 +1,4 @@
+import { options } from '../../configuration/options.js'
 import { judgeLine } from '../judgeLine.js'
 import { note } from '../note.js'
 import { particle } from '../particle.js'
@@ -6,7 +7,7 @@ import { archetypes } from './index.js'
 
 export class Initialization extends Archetype {
     preprocess() {
-        const noteRadius = 0.2
+        const noteRadius = 0.2 * options.noteSize
         const judgeLineY = -0.6
 
         const t = screen.t + noteRadius
