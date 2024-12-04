@@ -37,7 +37,7 @@ export class Note extends Archetype {
     preprocess() {
         this.targetTime = bpmChanges.at(this.import.beat).time
 
-        this.visualTime.copyFrom(Range.l.add(this.targetTime))
+        this.visualTime.copyFrom(Range.l.add(timeScaleChanges.at(this.targetTime).scaledTime))
 
         this.spawnTime = this.visualTime.min
     }
@@ -47,7 +47,7 @@ export class Note extends Archetype {
     }
 
     shouldSpawn() {
-        return time.now >= this.spawnTime
+        return time.scaled >= this.spawnTime
     }
 
     initialize() {
@@ -100,7 +100,7 @@ export class Note extends Archetype {
         if (time.now > this.inputTime.max) this.despawn = true
         if (this.despawn) return
 
-        const y = Math.unlerp(this.visualTime.min, this.visualTime.max, time.now)
+        const y = Math.unlerp(this.visualTime.min, this.visualTime.max, time.scaled)
 
         const layout = Rect.one.mul(note.radius).scale(1, -1).translate(0, y)
 
