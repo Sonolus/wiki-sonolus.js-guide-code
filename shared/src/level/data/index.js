@@ -10,5 +10,14 @@ export const data = {
             archetype: 'Stage',
             data: [],
         },
+        {
+            archetype: 'Note',
+            data: [
+                {
+                    name: 'time',
+                    value: 2,
+                },
+            ],
+        },
     ],
 }
