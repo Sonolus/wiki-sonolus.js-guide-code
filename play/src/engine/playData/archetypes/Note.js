@@ -37,7 +37,11 @@ export class Note extends Archetype {
     preprocess() {
         this.targetTime = bpmChanges.at(this.import.beat).time
 
-        this.visualTime.copyFrom(Range.l.add(timeScaleChanges.at(this.targetTime).scaledTime))
+        this.visualTime.copyFrom(
+            Range.l
+                .mul(120 / bpmChanges.at(this.import.beat).bpm)
+                .add(timeScaleChanges.at(this.targetTime).scaledTime),
+        )
 
         this.spawnTime = this.visualTime.min
     }
