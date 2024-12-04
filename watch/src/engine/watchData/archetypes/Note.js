@@ -1,5 +1,8 @@
 import { EngineArchetypeDataName } from '@sonolus/core'
 
+import { note } from '../note.js'
+import { skin } from '../skin.js'
+
 export class Note extends Archetype {
     import = this.defineImport({
         beat: { name: EngineArchetypeDataName.Beat, type: Number },
@@ -34,5 +37,13 @@ export class Note extends Archetype {
 
     despawnTime() {
         return this.visualTime.max
+    }
+
+    updateParallel() {
+        const y = Math.unlerp(this.visualTime.min, this.visualTime.max, time.scaled)
+
+        const layout = Rect.one.mul(note.radius).scale(1, -1).translate(0, y)
+
+        skin.sprites.note.draw(layout, [1, -this.targetTime], 1)
     }
 }
