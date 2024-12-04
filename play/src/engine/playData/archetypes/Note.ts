@@ -1,8 +1,9 @@
 import { EngineArchetypeDataName } from '@sonolus/core'
 
+import { buckets } from '../buckets.js'
 import { note } from '../note.js'
 import { skin } from '../skin.js'
-import { windows } from '../windows.js'
+import { bucketWindows, windows } from '../windows.js'
 import { isUsed, markAsUsed } from './InputManager.js'
 
 export class Note extends Archetype {
@@ -19,6 +20,10 @@ export class Note extends Archetype {
     spawnTime = this.entityMemory(Number)
 
     inputTime = this.entityMemory(Range)
+
+    globalPreprocess() {
+        buckets.note.set(bucketWindows)
+    }
 
     preprocess() {
         this.targetTime = bpmChanges.at(this.import.beat).time
@@ -54,6 +59,9 @@ export class Note extends Archetype {
 
             this.result.judgment = input.judge(touch.startTime, this.targetTime, windows)
             this.result.accuracy = touch.startTime - this.targetTime
+
+            this.result.bucket.index = buckets.note.index
+            this.result.bucket.value = this.result.accuracy * 1000
 
             this.despawn = true
             return
