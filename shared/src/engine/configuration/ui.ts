@@ -44,17 +44,17 @@ export const ui: EngineConfigurationUI = {
         },
         alpha: {
             from: 1,
-            to: 1,
-            duration: 0,
-            ease: 'none',
+            to: 0,
+            duration: 0.2,
+            ease: 'outCubic',
         },
     },
     comboAnimation: {
         scale: {
-            from: 1,
+            from: 1.2,
             to: 1,
-            duration: 0,
-            ease: 'none',
+            duration: 0.2,
+            ease: 'inCubic',
         },
         alpha: {
             from: 1,
