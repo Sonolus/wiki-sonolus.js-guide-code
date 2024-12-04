@@ -12,6 +12,7 @@ export class Note extends Archetype {
     })
 
     preprocess() {
+        chart.beats = Math.max(chart.beats, this.import.beat)
         chart.duration = Math.max(chart.duration, bpmChanges.at(this.import.beat).time)
     }
 
