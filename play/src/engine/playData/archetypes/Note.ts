@@ -3,6 +3,7 @@ import { EngineArchetypeDataName } from '@sonolus/core'
 import { buckets } from '../buckets.js'
 import { effect } from '../effect.js'
 import { note } from '../note.js'
+import { particle } from '../particle.js'
 import { skin } from '../skin.js'
 import { bucketWindows, windows } from '../windows.js'
 import { isUsed, markAsUsed } from './InputManager.js'
@@ -82,6 +83,13 @@ export class Note extends Archetype {
                     effect.clips.good.play(0.02)
                     break
             }
+
+            const layout = Rect.one
+                .mul(2 * note.radius)
+                .scale(1, -1)
+                .translate(0, 1)
+
+            particle.effects.note.spawn(layout, 0.3, false)
 
             this.despawn = true
             return
