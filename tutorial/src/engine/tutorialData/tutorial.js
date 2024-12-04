@@ -2,14 +2,14 @@ import { initialization } from './components/initialization.js'
 import { noteDisplay } from './components/noteDisplay.js'
 import { stage } from './components/stage.js'
 import { segment } from './segment.js'
-import { exampleFall } from './segments/example/fall.js'
-import { exampleFrozen } from './segments/example/frozen.js'
-import { exampleHit } from './segments/example/hit.js'
-import { exampleIntro } from './segments/example/intro.js'
+import { noteFall } from './segments/note/fall.js'
+import { noteFrozen } from './segments/note/frozen.js'
+import { noteHit } from './segments/note/hit.js'
+import { noteIntro } from './segments/note/intro.js'
 
 const components = [initialization, stage, noteDisplay]
 
-const segments = [exampleIntro, exampleFall, exampleFrozen, exampleHit]
+const segments = [noteIntro, noteFall, noteFrozen, noteHit]
 
 let current = tutorialMemory(Number)
 let next = tutorialMemory(Number)
