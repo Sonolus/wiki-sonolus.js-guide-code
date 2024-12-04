@@ -11,5 +11,14 @@ export const data: LevelData = {
             archetype: 'Stage',
             data: [],
         },
+        {
+            archetype: 'Note',
+            data: [
+                {
+                    name: 'time',
+                    value: 2,
+                },
+            ],
+        },
     ],
 }
