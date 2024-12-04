@@ -61,6 +61,12 @@ export class Initialization extends Archetype {
             horizontalAlign: HorizontalAlign.Center,
             background: false,
         })
+
+        for (const archetype of Object.values(archetypes)) {
+            if (!('globalPreprocess' in archetype)) continue
+
+            archetype.globalPreprocess()
+        }
     }
 
     spawnOrder() {
