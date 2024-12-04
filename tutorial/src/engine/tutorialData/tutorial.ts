@@ -1,4 +1,5 @@
 import { initialization } from './components/initialization.js'
+import { noteDisplay } from './components/noteDisplay.js'
 import { stage } from './components/stage.js'
 import { segment } from './segment.js'
 import { exampleFall } from './segments/example/fall.js'
@@ -6,7 +7,7 @@ import { exampleFrozen } from './segments/example/frozen.js'
 import { exampleHit } from './segments/example/hit.js'
 import { exampleIntro } from './segments/example/intro.js'
 
-const components = [initialization, stage] as const
+const components = [initialization, stage, noteDisplay] as const
 
 const segments = [exampleIntro, exampleFall, exampleFrozen, exampleHit] as const
 
